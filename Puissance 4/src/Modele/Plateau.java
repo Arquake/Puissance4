@@ -4,9 +4,13 @@ public class Plateau {
 
     /**
      * terrain int[line][column]
+     * 0 0 bottom left corner
      */
     private final int[][] terrain = new int[7][7];
 
+    /**
+     * @return the power 4 grid with pieces in it
+     */
     @Override
     public String toString() {
         StringBuilder content = new StringBuilder("\u001B[44m                                             \u001B[0m\n");
@@ -36,10 +40,18 @@ public class Plateau {
         }
     }
 
+    /**
+     * check if the player can play in this column
+     * @param column the column in which the player wants to insert his piece
+     * @return true if the move is valid
+     */
     public boolean checkCell(int column){
         return !((column < 0) || (column >=terrain[0].length) || terrain[0][column] != 0);
     }
 
+    /**
+     * @return the player who won | 0 otherwise
+     */
     public int checkWin(){
         int column = checkColumn();
         int row = checkRow();
@@ -86,14 +98,42 @@ public class Plateau {
     }
 
     private int checkDiagonal(){
-        return 1;
+        int topRight = checkTopRightDiagonal();
+        int topBottomRight = checkBottomRightDiagonal();
+        return topRight != 0? topRight:topBottomRight;
     }
 
-    private int checkRightDiagonal(){
-
+    private int checkTopRightDiagonal(){
+        int currentCase;
+        for (int i = terrain.length-1; i >= 3 ; i--) {
+            for (int j = terrain[0].length-1; j >= 3 ; j--) {
+                currentCase = terrain[i][j];
+                if( currentCase != 0 &&
+                        terrain[i-1][j-1] == currentCase &&
+                        terrain[i-2][j-2] == currentCase &&
+                        terrain[i-3][j-3] == currentCase
+                ) {
+                    return currentCase;
+                }
+            }
+        }
+        return 0;
     }
 
-    private int checkLeftDiagonal(){
-
+    private int checkBottomRightDiagonal(){
+        int currentCase;
+        for (int i = 0; i <= terrain.length-4 ; i++) {
+            for (int j = terrain[0].length-1; j >= 3 ; j--) {
+                currentCase = terrain[i][j];
+                if( currentCase != 0 &&
+                        terrain[i+1][j-1] == currentCase &&
+                        terrain[i+2][j-2] == currentCase &&
+                        terrain[i+3][j-3] == currentCase
+                ) {
+                    return currentCase;
+                }
+            }
+        }
+        return 0;
     }
 }

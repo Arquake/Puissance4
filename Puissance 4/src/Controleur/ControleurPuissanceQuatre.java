@@ -60,10 +60,19 @@ public class ControleurPuissanceQuatre {
         int playerTurn = 0;
         System.out.println(jeu.toString());
         System.out.println(jeu.checkWin());
+        jeu.jouerCoup(3,1);
+
+        jeu.jouerCoup(2,2);
         jeu.jouerCoup(2,1);
-        jeu.jouerCoup(2,1);
-        jeu.jouerCoup(2,1);
-        jeu.jouerCoup(2,1);
+
+        jeu.jouerCoup(1,2);
+        jeu.jouerCoup(1,2);
+        jeu.jouerCoup(1,1);
+
+        jeu.jouerCoup(0,2);
+        jeu.jouerCoup(0,2);
+        jeu.jouerCoup(0,2);
+        jeu.jouerCoup(0,1);
         System.out.println(jeu.toString());
         System.out.println(jeu.checkWin());
 
