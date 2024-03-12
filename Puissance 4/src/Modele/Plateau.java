@@ -49,18 +49,37 @@ public class Plateau {
     }
 
     public int checkWin(){
-        return
+        return checkLine();
     }
 
     public int checkLine(){
-
+        for (int i = terrain.length-1; i >= 0 ; i--) {
+            for (int j = terrain[0].length-1; j >= 3 ; j--) {
+                if (terrain[i][j] != 0) {
+                    for (int k = 3; k >= 0 ; k--) {
+                        System.out.println(i+" "+j+" "+k);
+                        if (terrain[i][j-k] != terrain[i][j]) {
+                            break;
+                        }
+                        else if (k==0){
+                            return terrain[i][j];
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        return 0;
     }
 
     public int checkColumn(){
+        for (int i = terrain.length-1; i >= 0 ; i--) {
 
+        }
+        return 1;
     }
 
     public int checkDiagonal(){
-
+        return 1;
     }
 }

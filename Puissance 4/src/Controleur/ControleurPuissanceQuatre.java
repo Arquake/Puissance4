@@ -72,6 +72,12 @@ public class ControleurPuissanceQuatre {
         System.out.println(jeu.checkCell(7));
         System.out.println(jeu.checkCell(0));
         System.out.println(jeu.checkCell(-1));
+        System.out.println(jeu.checkWin());
+        jeu.jouerCoup(2,1);
+        jeu.jouerCoup(3,1);
+        jeu.jouerCoup(4,1);
+        System.out.println(jeu.toString());
+        System.out.println(jeu.checkWin());
 
         /* Game loop
         while (!jeu.isEmpty()) {
