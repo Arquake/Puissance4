@@ -1,12 +1,13 @@
 package Controleur;
 
+import Modele.Exception.invalidCellException;
 import Modele.Joueur;
 import Modele.Plateau;
 import Vue.Ihm;
 
 public class ControleurPuissanceQuatre {
     private Joueur[] joueurs;
-
+    private Plateau jeu;
     private final Ihm ihm;
 
     /**
@@ -16,6 +17,8 @@ public class ControleurPuissanceQuatre {
     public ControleurPuissanceQuatre(Ihm ihm) {
         this.ihm = ihm;
         createPlayers();
+       this.jeu = new Plateau();
+
     }
 
     /**
@@ -24,7 +27,7 @@ public class ControleurPuissanceQuatre {
      * after each full game it asks the players if they want to play the game again using the Ihm
      * if they say no then it prints the stats
      */
-    public void jouer(){
+    public void jouer() throws invalidCellException {
 
         boolean running = true;
         while (running){
@@ -48,62 +51,33 @@ public class ControleurPuissanceQuatre {
      * initializes game with joueur 0
      *
      */
-    private void playGame() {
+    
+    private void playGame() throws invalidCellException {
 
-        Plateau jeu = new Plateau();
         Joueur dernier_joueur = joueurs[0];
         int playerTurn = 0;
-        System.out.println(jeu.toString());
-        System.out.println(jeu.checkWin());
-        try {
-            jeu.jouerCoup(3, 1);
 
-            jeu.jouerCoup(2, 2);
-            jeu.jouerCoup(2, 1);
 
-            jeu.jouerCoup(1, 2);
-            jeu.jouerCoup(1, 2);
-            jeu.jouerCoup(1, 1);
-
-            jeu.jouerCoup(0, 2);
-            jeu.jouerCoup(0, 2);
-            jeu.jouerCoup(0, 2);
-            jeu.jouerCoup(0, 1);
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-        System.out.println(jeu.toString());
-        System.out.println(jeu.checkWin());
-
-        /* Game loop
-        while (!jeu.isEmpty()) {
+        // Game loop
+        while (!jeu.boardIsFull()) {
             // Ask the current player for their move
-            String coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom());
+            int coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom());
 
             // Verify and play the move if it's valid
-            if (model.verifierCoup(coup, jeu)) {
-                if (model.jouerCoup(coup, jeu)) {
+                if (jeu.jouerCoup(coup,playerTurn+1)) {
                     // If the move was successful, update the last player
+                    System.out.println("this coup was just done : " + coup);
                     dernier_joueur = joueurs[playerTurn];
 
-                    // Check if the game is over (heaps are empty) before changing turns
-                    if (jeu.isEmpty()) {
-                        break; // Exit the loop if the game is over
-                    }
                 }
                 // Move to the next player's turn only if the game continues
                 playerTurn = (playerTurn + 1) % 2;
-            } else {
-                // Inform the player if the input data was invalid
-                ihm.invalidData();
-            }
+
 
         }
         // Announce the winner and update their score
         ihm.victory(dernier_joueur.getNom());
-        dernier_joueur.increaseScore();*/
+        dernier_joueur.increaseScore();
     }
 
 

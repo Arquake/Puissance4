@@ -9,12 +9,12 @@ import java.util.regex.Pattern;
 
 public class Ihm {
     /**
-     * Ask the player to play on a colomn
+     * Ask the player to play on a column
      * @param plateau Board of the game
      * @param playerName Player asked
      * @return a toi de jouer !
      */
-    public int demanderCoup(Plateau plateau, String playerName) throws invalidCellException {
+    public int demanderCoup(String plateau, String playerName) throws invalidCellException {
         Scanner scanner = new Scanner(System.in);
         System.out.println(plateau + playerName + " à vous de jouer ! Indiquez le numéro de la colone visée. \nVotre coup : ");
 
