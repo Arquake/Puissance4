@@ -1,5 +1,7 @@
 package Modele;
 
+import Modele.Exception.invalidCellException;
+
 public class Plateau {
 
     /**
@@ -34,21 +36,14 @@ public class Plateau {
      *               if the player wrote 1 the number given should be 0
      * @param numeroJoueur number of the player
      */
-    public boolean jouerCoup(int column, int numeroJoueur) {
-        if (!checkCell(column)){return false;}
+    public boolean jouerCoup(int column, int numeroJoueur) throws invalidCellException {
+        if ((column < 0) || (column >=terrain[0].length) || terrain[0][column] != 0){throw new invalidCellException();};
+
         for (int i = terrain.length-1; i >= 0 ; i--) {
             if (terrain[i][column] == 0) {terrain[i][column] = numeroJoueur;break;}
         }
-        return true;
-    }
 
-    /**
-     * check if the player can play in this column
-     * @param column the column in which the player wants to insert his piece
-     * @return true if the move is valid
-     */
-    private boolean checkCell(int column){
-        return !((column < 0) || (column >=terrain[0].length) || terrain[0][column] != 0);
+        return true;
     }
 
     /**
@@ -61,6 +56,11 @@ public class Plateau {
         return column != 0? column:row != 0? row:diagonal;
     }
 
+
+    /**
+     * check every row of the board if someone has won
+     * @return 0 if nobody won | the player number otherwise
+     */
     private int checkRow(){
         for (int i = terrain.length-1; i >= 0 ; i--) {
             for (int j = terrain[0].length-1; j >= 3 ; j--) {
@@ -80,6 +80,10 @@ public class Plateau {
         return 0;
     }
 
+    /**
+     * check every column of the board if someone has won
+     * @return 0 if nobody won | the player number otherwise
+     */
     private int checkColumn(){
         for (int i = terrain[0].length-1; i >= 0 ; i--) {
             for (int j = terrain.length-1; j >= 3 ; j--) {
@@ -99,12 +103,20 @@ public class Plateau {
         return 0;
     }
 
+    /**
+     * check every diagonal of the board if someone has won
+     * @return 0 if nobody won | the player number otherwise
+     */
     private int checkDiagonal(){
         int topRight = checkTopRightDiagonal();
         int topBottomRight = checkBottomRightDiagonal();
         return topRight != 0? topRight:topBottomRight;
     }
 
+    /**
+     * check every diagonal from top right to bottom left of the board if someone has won
+     * @return 0 if nobody won | the player number otherwise
+     */
     private int checkTopRightDiagonal(){
         int currentCase;
         for (int i = terrain.length-1; i >= 3 ; i--) {
@@ -122,6 +134,10 @@ public class Plateau {
         return 0;
     }
 
+    /**
+     * check every diagonal from bottom right to top left of the board if someone has won
+     * @return 0 if nobody won | the player number otherwise
+     */
     private int checkBottomRightDiagonal(){
         int currentCase;
         for (int i = 0; i <= terrain.length-4 ; i++) {
@@ -139,6 +155,9 @@ public class Plateau {
         return 0;
     }
 
+    /**
+     * @return true if the board is full
+     */
     public boolean boardIsFull(){
         for (int[] line : terrain) {
             for (int element : line) {

@@ -2,17 +2,12 @@ package Controleur;
 
 import Modele.Joueur;
 import Modele.Plateau;
-import Modele.PuissanceQuatreModele;
 import Vue.Ihm;
 
 public class ControleurPuissanceQuatre {
     private Joueur[] joueurs;
 
-    private final PuissanceQuatreModele model = new PuissanceQuatreModele();
-
     private final Ihm ihm;
-
-    private int numberOfHeap;
 
     /**
      * Initialize the game
