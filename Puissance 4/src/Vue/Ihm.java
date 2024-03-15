@@ -1,13 +1,30 @@
 package Vue;
 
+import Modele.Exception.invalidCellException;
+import Modele.Plateau;
+
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Ihm {
-    public String demanderCoup(String matchSets, String playerName) {
+    /**
+     * Ask the player to play on a colomn
+     * @param plateau Board of the game
+     * @param playerName Player asked
+     * @return a toi de jouer !
+     */
+    public int demanderCoup(Plateau plateau, String playerName) throws invalidCellException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(matchSets + playerName + " à vous de jouer un coup sous la forme 'm n' où m est le tas choisi et n le nombre d'allumettes à retirer dans ce tas.\n coup : ");
-        String line = scanner.nextLine();
-        return line;
+        System.out.println(plateau + playerName + " à vous de jouer ! Indiquez le numéro de la colone visée. \nVotre coup : ");
+
+        String coup = scanner.nextLine();
+        Pattern pattern = Pattern.compile("[1-7]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(coup);
+        if (matcher.find()) {
+            return Integer.parseInt(coup);
+        }
+        throw new invalidCellException();
     }
 
     /**
@@ -34,8 +51,7 @@ public class Ihm {
     public String creerJoueur(int i){
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nom du joueur "+i+" : ");
-        String line = scanner.nextLine();
-        return line;
+        return scanner.nextLine();
     }
 
     /**
