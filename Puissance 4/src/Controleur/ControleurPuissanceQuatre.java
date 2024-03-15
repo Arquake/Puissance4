@@ -59,14 +59,13 @@ public class ControleurPuissanceQuatre {
 
 
         // Game loop
-        while (!jeu.boardIsFull()) {
+        while (!jeu.boardIsFull()&& jeu.checkWin() == 0) {
             // Ask the current player for their move
             int coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom());
 
             // Verify and play the move if it's valid
-                if (jeu.jouerCoup(coup,playerTurn+1)) {
+                if (jeu.jouerCoup(coup-1,playerTurn+1)) {
                     // If the move was successful, update the last player
-                    System.out.println("this coup was just done : " + coup);
                     dernier_joueur = joueurs[playerTurn];
 
                 }
