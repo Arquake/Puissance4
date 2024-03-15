@@ -34,10 +34,12 @@ public class Plateau {
      *               if the player wrote 1 the number given should be 0
      * @param numeroJoueur number of the player
      */
-    public void jouerCoup(int column, int numeroJoueur) {
+    public boolean jouerCoup(int column, int numeroJoueur) {
+        if (!checkCell(column)){return false;}
         for (int i = terrain.length-1; i >= 0 ; i--) {
             if (terrain[i][column] == 0) {terrain[i][column] = numeroJoueur;break;}
         }
+        return true;
     }
 
     /**
@@ -45,7 +47,7 @@ public class Plateau {
      * @param column the column in which the player wants to insert his piece
      * @return true if the move is valid
      */
-    public boolean checkCell(int column){
+    private boolean checkCell(int column){
         return !((column < 0) || (column >=terrain[0].length) || terrain[0][column] != 0);
     }
 
@@ -135,5 +137,14 @@ public class Plateau {
             }
         }
         return 0;
+    }
+
+    public boolean boardIsFull(){
+        for (int[] line : terrain) {
+            for (int element : line) {
+                if (element == 0){return false;}
+            }
+        }
+        return true;
     }
 }
