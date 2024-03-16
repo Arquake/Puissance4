@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Ihm {
+
     /**
      * Ask the player to play on a column
      * @param plateau Board of the game
