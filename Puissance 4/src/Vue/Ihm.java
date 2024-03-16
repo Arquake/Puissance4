@@ -1,7 +1,6 @@
 package Vue;
 
-import Modele.Exception.invalidCellException;
-import Modele.Plateau;
+import Modele.Exception.invalidColumException;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -15,7 +14,7 @@ public class Ihm {
      * @param playerName Player asked
      * @return a toi de jouer !
      */
-    public int demanderCoup(String plateau, String playerName) throws invalidCellException {
+    public int demanderCoup(String plateau, String playerName) throws invalidColumException {
         Scanner scanner = new Scanner(System.in);
         System.out.println(plateau + playerName + " à vous de jouer ! Indiquez le numéro de la colone visée. \nVotre coup : ");
 
@@ -25,7 +24,7 @@ public class Ihm {
         if (matcher.find()) {
             return Integer.parseInt(coup);
         }
-        throw new invalidCellException();
+        throw new invalidColumException();
     }
 
     /**
