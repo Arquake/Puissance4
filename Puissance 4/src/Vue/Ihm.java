@@ -28,22 +28,6 @@ public class Ihm {
     }
 
     /**
-     * @return int with the user input that should represent the number of heap
-     */
-    public int creerJeu(){
-        int res = -1;
-        Scanner scanner = new Scanner("");
-        while ( true ) {
-            System.out.print("Nombre de tas : ");
-            scanner = new Scanner(System.in);
-            res = verifierCreationJeu(scanner.nextLine());
-            if (res != -1) { break; }
-            invalidData();
-        }
-        return res;
-    }
-
-    /**
      * receives user player name
      * @param i which player it is making right now
      * @return the player name to the controller
@@ -113,24 +97,5 @@ public class Ihm {
      */
     public void endExeaquo(){
         System.out.println("\n\u001B[43m" + "\u001B[30m " + " ex aequo " + "\u001B[0m");
-    }
-
-    /**
-     * checks if the number of Heap is valid
-     * @param nombre user input
-     * @return number of Heap if valid, -1 otherwise
-     */
-    public int verifierCreationJeu(String nombre){
-        Scanner scanner = new Scanner(nombre);
-        // scanner check if there's an int in the string
-        if ( !scanner.hasNextInt()) {
-            return -1;
-        }
-        // if there's an int we parse it to an int and store it
-        int res = Integer.parseInt(scanner.next());
-        // if scanner hase other information or res is invalid -1 returned
-        if (scanner.hasNext() ) { return -1; }
-        // if everything is valid we return the res
-        return res >= 1 ? res : -1;
     }
 }
