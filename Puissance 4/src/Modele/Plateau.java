@@ -70,7 +70,7 @@ public class Plateau {
                             break;
                         }
                         else if (k==0){
-                            return terrain[i][j];
+                            return terrain[i][j]-1;
                         }
                     }
                     break;
@@ -93,7 +93,7 @@ public class Plateau {
                             break;
                         }
                         else if (k==0){
-                            return terrain[j][i];
+                            return terrain[j][i]-1;
                         }
                     }
                     break;
@@ -127,7 +127,7 @@ public class Plateau {
                         terrain[i-2][j-2] == currentCase &&
                         terrain[i-3][j-3] == currentCase
                 ) {
-                    return currentCase;
+                    return currentCase-1;
                 }
             }
         }
@@ -148,7 +148,7 @@ public class Plateau {
                         terrain[i+2][j-2] == currentCase &&
                         terrain[i+3][j-3] == currentCase
                 ) {
-                    return currentCase;
+                    return currentCase-1;
                 }
             }
         }
