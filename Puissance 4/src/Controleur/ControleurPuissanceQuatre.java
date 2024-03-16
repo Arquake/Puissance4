@@ -17,7 +17,7 @@ public class ControleurPuissanceQuatre {
     public ControleurPuissanceQuatre(Ihm ihm) {
         this.ihm = ihm;
         createPlayers();
-       this.jeu = new Plateau();
+
 
     }
 
@@ -54,8 +54,7 @@ public class ControleurPuissanceQuatre {
 
     private void playGame() throws invalidCellException {
         int playerTurn = 0;
-
-
+        this.jeu = new Plateau();
 
         // Game loop
         while ( true ) {
