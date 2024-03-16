@@ -51,32 +51,37 @@ public class ControleurPuissanceQuatre {
      * initializes game with joueur 0
      *
      */
-    
-    private void playGame() throws invalidCellException {
 
-        Joueur dernier_joueur = joueurs[0];
+    private void playGame() throws invalidCellException {
         int playerTurn = 0;
 
 
+
         // Game loop
-        while (!jeu.boardIsFull()&& jeu.checkWin() == 0) {
-            // Ask the current player for their move
-            int coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom());
+        while ( true ) {
+            try {
+                // Ask the current player for their move
+                // Verify and play the move if it's valid
 
-            // Verify and play the move if it's valid
-                if (jeu.jouerCoup(coup-1,playerTurn+1)) {
-                    // If the move was successful, update the last player
-                    dernier_joueur = joueurs[playerTurn];
+                int coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom());
 
+                if (jeu.jouerCoup(coup - 1, playerTurn+1)) {
+                    if (jeu.checkWin() != 0){
+                        ihm.victory(joueurs[playerTurn].getNom());
+                        joueurs[playerTurn].increaseScore();
+                        System.out.println(jeu.toString()+"\n"+joueurs[playerTurn].getNom() + " you've won big fucking deal");
+                        break;
+                    }
+                    if ( jeu.boardIsFull() ){ break; }
+                    // If the move was successful, update the next player
+                    playerTurn = (playerTurn + 1) % 2;
                 }
-                // Move to the next player's turn only if the game continues
-                playerTurn = (playerTurn + 1) % 2;
-
-
+            }
+            catch(Exception e) {
+                ihm.invalidData();
+            }
         }
         // Announce the winner and update their score
-        ihm.victory(dernier_joueur.getNom());
-        dernier_joueur.increaseScore();
     }
 
 
