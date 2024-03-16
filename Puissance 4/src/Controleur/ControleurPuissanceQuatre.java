@@ -17,7 +17,6 @@ public class ControleurPuissanceQuatre {
     public ControleurPuissanceQuatre(Ihm ihm) {
         this.ihm = ihm;
         createPlayers();
-       this.jeu = new Plateau();
 
     }
 
@@ -56,6 +55,9 @@ public class ControleurPuissanceQuatre {
         int playerTurn = 0;
 
 
+        this.jeu = new Plateau();
+
+        int coup;
 
         // Game loop
         while ( true ) {
@@ -63,13 +65,13 @@ public class ControleurPuissanceQuatre {
                 // Ask the current player for their move
                 // Verify and play the move if it's valid
 
-                int coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom());
+                coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom());
 
                 if (jeu.jouerCoup(coup - 1, playerTurn+1)) {
                     if (jeu.checkWin() != -1){
                         ihm.victory(joueurs[playerTurn].getNom());
                         joueurs[playerTurn].increaseScore();
-                        System.out.println(jeu.toString()+"\n"+joueurs[playerTurn].getNom() + " you've won big fucking deal");
+                        System.out.println(jeu+"\n"+joueurs[playerTurn].getNom() + " you've won big fucking deal");
                         break;
                     }
                     if ( jeu.boardIsFull() ){ break; }
