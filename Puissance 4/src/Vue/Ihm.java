@@ -1,7 +1,6 @@
 package Vue;
 
 import Modele.Exception.invalidColumException;
-
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -97,5 +96,9 @@ public class Ihm {
      */
     public void endExeaquo(){
         System.out.println("\n\u001B[43m" + "\u001B[30m " + " ex aequo " + "\u001B[0m");
+    }
+
+    public void noWinBoardFull(String jeu){
+        System.out.println(jeu + "\n\u001B[43m" + "\u001B[30m " + "La grille est complête et personne n'a aligné 4 jetons ! C'est un match nul. \u001B[0m");
     }
 }

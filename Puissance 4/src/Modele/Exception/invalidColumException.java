@@ -1,6 +1,7 @@
 package Modele.Exception;
 
 public class invalidColumException extends Exception {
+    //Mon precieux
     public invalidColumException() {
         super();
     }

@@ -73,6 +73,7 @@ public class ControleurPuissanceQuatre {
                         break;
                     }
                     if (jeu.boardIsFull()) {
+                        ihm.noWinBoardFull(jeu.toString());
                         break;
                     }
                     // If the move was successful, update the next player
