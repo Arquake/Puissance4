@@ -68,9 +68,8 @@ public class ControleurPuissanceQuatre {
 
                 if (jeu.jouerCoup(coup - 1, playerTurn + 1)) {
                     if (jeu.checkWin() != -1) {
-                        ihm.victory(joueurs[playerTurn].getNom());
                         joueurs[playerTurn].increaseScore();
-                        System.out.println(jeu + "\n" + joueurs[playerTurn].getNom() + " you've won big fucking deal");
+                        ihm.victory(joueurs[playerTurn].getNom());
                         break;
                     }
                     if (jeu.boardIsFull()) {
