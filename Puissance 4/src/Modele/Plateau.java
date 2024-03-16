@@ -53,7 +53,7 @@ public class Plateau {
         int column = checkColumn();
         int row = checkRow();
         int diagonal = checkDiagonal();
-        return column != 0? column:row != 0? row:diagonal;
+        return column != -1? column:row != -1? row:diagonal;
     }
 
 
@@ -77,7 +77,7 @@ public class Plateau {
                 }
             }
         }
-        return 0;
+        return -1;
     }
 
     /**
@@ -100,7 +100,7 @@ public class Plateau {
                 }
             }
         }
-        return 0;
+        return -1;
     }
 
     /**
@@ -110,7 +110,7 @@ public class Plateau {
     private int checkDiagonal(){
         int topRight = checkTopRightDiagonal();
         int topBottomRight = checkBottomRightDiagonal();
-        return topRight != 0? topRight:topBottomRight;
+        return topRight != -1? topRight:topBottomRight;
     }
 
     /**
@@ -131,7 +131,7 @@ public class Plateau {
                 }
             }
         }
-        return 0;
+        return -1;
     }
 
     /**
@@ -152,7 +152,7 @@ public class Plateau {
                 }
             }
         }
-        return 0;
+        return -1;
     }
 
     /**

@@ -66,7 +66,7 @@ public class ControleurPuissanceQuatre {
                 int coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom());
 
                 if (jeu.jouerCoup(coup - 1, playerTurn+1)) {
-                    if (jeu.checkWin() != 0){
+                    if (jeu.checkWin() != -1){
                         ihm.victory(joueurs[playerTurn].getNom());
                         joueurs[playerTurn].increaseScore();
                         System.out.println(jeu.toString()+"\n"+joueurs[playerTurn].getNom() + " you've won big fucking deal");

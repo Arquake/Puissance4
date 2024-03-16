@@ -1,8 +1,6 @@
 import Controleur.ControleurPuissanceQuatre;
 import Modele.Exception.invalidCellException;
 
-import Modele.Plateau;
-
 import Vue.Ihm;
 
 public class Main {
