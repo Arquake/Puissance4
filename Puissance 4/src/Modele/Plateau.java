@@ -2,6 +2,8 @@ package Modele;
 
 import Modele.Exception.invalidCellException;
 
+import java.util.Arrays;
+
 public class Plateau {
 
     /**
@@ -15,8 +17,9 @@ public class Plateau {
      */
     @Override
     public String toString() {
-        StringBuilder content = new StringBuilder("\u001B[44m                                             \u001B[0m\n");
+        StringBuilder content = new StringBuilder();
         for (int[] i : terrain){
+            content.append("\n\u001B[44m                                             \u001B[0m\n");
             content.append("\u001B[44m   \u001B[0m");
             for (int j : i) {
                 switch (j) {
@@ -25,8 +28,8 @@ public class Plateau {
                     default -> content.append("\u001B[47m   \u001B[0m\u001B[44m   \u001B[0m");
                 }
             }
-            content.append("\n\u001B[44m                                             \u001B[0m\n");
         }
+        content.append("\n\u001B[44m \u001B[30m   1     2     3     4     5     6     7    \u001B[0m\n");
         return content.toString();
     }
 

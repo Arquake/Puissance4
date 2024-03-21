@@ -57,19 +57,19 @@ public class ControleurPuissanceQuatre {
         Plateau jeu = new Plateau();
 
         int coup;
-
+        boolean erone = false;
         // Game loop
         while (true) {
             try {
                 // Ask the current player for their move
                 // Verify and play the move if it's valid
 
-                coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom());
-
+                coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom(), erone);
+                erone = false;
                 if (jeu.jouerCoup(coup - 1, playerTurn + 1)) {
                     if (jeu.checkWin() != -1) {
                         joueurs[playerTurn].increaseScore();
-                        ihm.victory(joueurs[playerTurn].getNom());
+                        ihm.victory(joueurs[playerTurn].getNom(), jeu.toString());
                         break;
                     }
                     if (jeu.boardIsFull()) {
@@ -80,6 +80,7 @@ public class ControleurPuissanceQuatre {
                     playerTurn = (playerTurn + 1) % 2;
                 }
             } catch (Exception e) {
+                erone = true;
                 ihm.invalidData();
             }
         }
@@ -94,7 +95,7 @@ public class ControleurPuissanceQuatre {
         this.joueurs = new Joueur[2];
         // creating the players
         for (int i = 0; i < 2; i++) {
-            this.joueurs[i] = new Joueur(ihm.creerJoueur(i+1));
+            this.joueurs[i] = new Joueur(ihm.creerJoueur(i));
         }
     }
 }

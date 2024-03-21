@@ -1,6 +1,8 @@
 package Vue;
 
 import Modele.Exception.invalidColumException;
+import Modele.Plateau;
+
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,10 +15,13 @@ public class Ihm {
      * @param playerName Player asked
      * @return a toi de jouer !
      */
-    public int demanderCoup(String plateau, String playerName) throws invalidColumException {
+    public int demanderCoup(String plateau, String playerName, Boolean erreur) throws invalidColumException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(plateau + playerName + " à vous de jouer ! Indiquez le numéro de la colone visée. \nVotre coup : ");
-
+        if (erreur){
+            System.out.println(playerName + " c'est encore à vous ! Indiquez le numéro (entre 1 et 7) de la colone visée. \nVotre coup : ");
+        } else {
+            System.out.println(plateau + playerName + " à vous de jouer ! Indiquez le numéro de la colone visée. \nVotre coup : ");
+        }
         String coup = scanner.nextLine();
         Pattern pattern = Pattern.compile("[1-7]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(coup);
@@ -33,7 +38,7 @@ public class Ihm {
      */
     public String creerJoueur(int i){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nom du joueur "+i+" : ");
+        System.out.print("Nom du joueur "+(i+1)+" : ");
         return scanner.nextLine();
     }
 
@@ -46,10 +51,10 @@ public class Ihm {
 
     /**
      * prints which player have won
-     * @param nomJoueur le nom du joueur
+     * @param nomJoueur player's name
      */
-    public void victory(String nomJoueur) {
-        System.out.println("\u001B[42m" + "\u001B[30m " + nomJoueur + " a gagné " + "\u001B[0m");
+    public void victory(String nomJoueur, String plateau) {
+        System.out.println(plateau + "\n\u001B[42m" + "\u001B[30m " + nomJoueur + " a gagné " + "\u001B[0m");
     }
 
     /**
@@ -69,6 +74,7 @@ public class Ihm {
             if (res.equalsIgnoreCase("y") || res.equalsIgnoreCase("n")){
                 return res.equalsIgnoreCase("y");
             } else {
+
                 System.out.println("Rejouer ? (Y/N)");
             }
         }
@@ -98,6 +104,10 @@ public class Ihm {
         System.out.println("\n\u001B[43m" + "\u001B[30m " + " ex aequo " + "\u001B[0m");
     }
 
+    /**
+     * Print when the board is full and what follows it
+     * @param jeu Board showed
+     */
     public void noWinBoardFull(String jeu){
         System.out.println(jeu + "\n\u001B[43m" + "\u001B[30m " + "La grille est complête et personne n'a aligné 4 jetons ! C'est un match nul. \u001B[0m");
     }
