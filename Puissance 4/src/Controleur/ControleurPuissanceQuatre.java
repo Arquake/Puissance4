@@ -94,7 +94,7 @@ public class ControleurPuissanceQuatre {
         this.joueurs = new Joueur[2];
         // creating the players
         for (int i = 0; i < 2; i++) {
-            this.joueurs[i] = new Joueur(ihm.creerJoueur(i));
+            this.joueurs[i] = new Joueur(ihm.creerJoueur(i+1));
         }
     }
 }
