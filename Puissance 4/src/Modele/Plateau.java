@@ -23,8 +23,8 @@ public class Plateau {
             content.append("\u001B[44m   \u001B[0m");
             for (int j : i) {
                 switch (j) {
-                    case 1 -> content.append("\u001B[43m   \u001B[0m\u001B[44m   \u001B[0m");
-                    case 2 -> content.append("\u001B[41m   \u001B[0m\u001B[44m   \u001B[0m");
+                    case 1 -> content.append("\u001B[41m   \u001B[0m\u001B[44m   \u001B[0m");
+                    case 2 -> content.append("\u001B[43m   \u001B[0m\u001B[44m   \u001B[0m");
                     default -> content.append("\u001B[47m   \u001B[0m\u001B[44m   \u001B[0m");
                 }
             }
