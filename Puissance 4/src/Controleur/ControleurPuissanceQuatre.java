@@ -15,7 +15,7 @@ public class ControleurPuissanceQuatre {
      */
     public ControleurPuissanceQuatre(Ihm ihm) {
         this.ihm = ihm;
-        createPlayers();
+        creerListeJoueurs();
 
     }
 
@@ -29,7 +29,7 @@ public class ControleurPuissanceQuatre {
 
         boolean running = true;
         while (running) {
-            playGame();
+            jouerTour();
 
             running = ihm.replay();
         }
@@ -50,7 +50,7 @@ public class ControleurPuissanceQuatre {
      * initializes game with joueur 0
      */
 
-    private void playGame() {
+    private void jouerTour() {
         int playerTurn = 0;
 
 
@@ -91,7 +91,7 @@ public class ControleurPuissanceQuatre {
     /**
      * creates two player and stores them in this.joueurs Array
      */
-    private void createPlayers() {
+    private void creerListeJoueurs() {
         this.joueurs = new Joueur[2];
         // creating the players
         for (int i = 0; i < 2; i++) {
