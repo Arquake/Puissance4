@@ -57,38 +57,33 @@ public class ControleurPuissanceQuatre {
 
 
         jeu = new Plateau();
-        boolean valid = true;
+        ihm.afficherPlateau(jeu.toString());
 
         int coup;
         // Game loop
         while (true) {
                 // Ask the current player for their move
                 // Verify and play the move if it's valid
-
-            if (valid) {
-                ihm.afficherPlateau(jeu.toString());
-            }
-            valid = true;
             coup = ihm.demanderCoup(joueurs[playerTurn].getNom());
 
                 try {
-                    if (jeu.jouerCoup(coup - 1, playerTurn + 1)) {
-                        if (jeu.checkWin() != -1) {
-                            joueurs[playerTurn].increaseScore();
-                            ihm.victory(joueurs[playerTurn].getNom(), jeu.toString());
-                            break;
-                        }
-                        if (jeu.boardIsFull()) {
-                            ihm.noWinBoardFull(jeu.toString());
-                            break;
-                        }
-                        // If the move was successful, update the next player
-                        playerTurn = (playerTurn + 1) % 2;
+                    jeu.jouerCoup(coup - 1, playerTurn + 1);
+                    if (jeu.checkWin() != -1) {
+                        joueurs[playerTurn].increaseScore();
+                        ihm.victory(joueurs[playerTurn].getNom(), jeu.toString());
+                        break;
                     }
+                    if (jeu.boardIsFull()) {
+                        ihm.noWinBoardFull(jeu.toString());
+                        break;
+                    }
+                    ihm.afficherPlateau(jeu.toString());
+                    // If the move was successful, update the next player
+                    playerTurn = (playerTurn + 1) % 2;
+
                 }
-                catch (invalidCellException e){
+                catch (Exception e){
                     ihm.invalidData();
-                    valid = false;
                 }
         }
         // Announce the winner and update their score
