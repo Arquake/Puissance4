@@ -82,7 +82,7 @@ public class ControleurPuissanceQuatre {
                     playerTurn = (playerTurn + 1) % 2;
 
                 }
-                catch (Exception e){
+                catch (invalidCellException e){
                     ihm.invalidData();
                 }
         }
