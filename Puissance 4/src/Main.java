@@ -1,6 +1,4 @@
 import Controleur.ControleurPuissanceQuatre;
-
-import Modele.Plateau;
 import Vue.Ihm;
 
 public class Main {
