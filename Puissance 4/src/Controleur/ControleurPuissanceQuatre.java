@@ -23,7 +23,7 @@ public class ControleurPuissanceQuatre {
 
     /**
      * Starts the game and keeps it running until the player wants to stop
-     * uses playGame() to play the actual game
+     * uses jouerPartie() to play the actual game
      * after each full game it asks the players if they want to play the game again using the Ihm
      * if they say no then it prints the stats
      */
@@ -31,7 +31,7 @@ public class ControleurPuissanceQuatre {
 
         boolean running = true;
         while (running) {
-            jouerTour();
+            jouerPartie();
 
             running = ihm.replay();
         }
@@ -52,7 +52,7 @@ public class ControleurPuissanceQuatre {
      * initializes game with joueur 0
      */
 
-    private void jouerTour() {
+    private void jouerPartie() {
         int playerTurn = 0;
 
 
