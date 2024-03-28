@@ -1,5 +1,6 @@
 package Controleur;
 
+import Modele.Exception.invalidColumnException;
 import Modele.Joueur;
 import Modele.Plateau;
 import Vue.Ihm;
@@ -81,7 +82,7 @@ public class ControleurPuissanceQuatre {
                     playerTurn = (playerTurn + 1) % 2;
 
                 }
-                catch (invalidCellException e){
+                catch (invalidColumnException e){
                     ihm.invalidData();
                 }
         }
