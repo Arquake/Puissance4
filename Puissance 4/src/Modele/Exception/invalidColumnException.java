@@ -1,12 +1,14 @@
 package Modele.Exception;
 
-public class invalidColumnException extends Exception{
-    public invalidColumnException() {
+public class invalidCellException extends Exception{
+
+
+    public invalidCellException() {
         super();
     }
 
     @Override
     public String getMessage() {
-        return "Invalid data";
+        return "Invalid column";
     }
 }
