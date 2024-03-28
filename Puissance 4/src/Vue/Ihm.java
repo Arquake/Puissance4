@@ -13,9 +13,10 @@ public class Ihm {
      * Ask the player to play on a column
      * @param plateau Board of the game
      * @param playerName Player asked
-     * @return a toi de jouer !
+     * @param erreur If call with an error
+     * @return Column to play on
      */
-    public int demanderCoup(String plateau, String playerName, Boolean erreur) throws invalidColumException {
+    public int demanderCoup(String plateau, String playerName, boolean erreur) throws invalidColumException {
         Scanner scanner = new Scanner(System.in);
         if (erreur){
             System.out.println(playerName + " c'est encore à vous ! Indiquez le numéro (entre 1 et 7) de la colone visée. \nVotre coup : ");
@@ -52,6 +53,7 @@ public class Ihm {
     /**
      * prints which player have won
      * @param nomJoueur player's name
+     * @param plateau board of the game
      */
     public void victory(String nomJoueur, String plateau) {
         System.out.println(plateau + "\n\u001B[42m" + "\u001B[30m " + nomJoueur + " a gagné !\u001B[0m");
