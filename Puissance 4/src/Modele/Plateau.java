@@ -2,6 +2,9 @@ package Modele;
 
 import Modele.Exception.invalidColumnException;
 
+/**
+ * Board modelisation
+ */
 public class Plateau {
 
     /**

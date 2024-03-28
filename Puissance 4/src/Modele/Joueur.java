@@ -1,5 +1,8 @@
 package Modele;
 
+/**
+ * Player modelisation
+ */
 public class Joueur implements Comparable<Joueur>  {
     /**
      * name of the player
