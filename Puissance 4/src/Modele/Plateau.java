@@ -2,8 +2,6 @@ package Modele;
 
 import Modele.Exception.invalidCellException;
 
-import java.util.Arrays;
-
 public class Plateau {
 
     /**
@@ -13,6 +11,7 @@ public class Plateau {
     private final int[][] terrain = new int[7][7];
 
     /**
+     * give a string of the state of the game
      * @return the power 4 grid with pieces in it
      */
     @Override
@@ -34,22 +33,21 @@ public class Plateau {
     }
 
     /**
-     *
+     * play the move given in the parameters by a given player
      * @param column column number as column entered by the player - 1
-     *               if the player wrote 1 the number given should be 0
-     * @param numeroJoueur number of the player
+     *      *               if the player wrote 1 the number given should be 0
+     *      * @param numeroJoueur number of the player
+     * @throws invalidCellException if the column selected is less than 0 or greater than the number of columns
      */
-    public boolean jouerCoup(int column, int numeroJoueur) throws invalidCellException {
+    public void jouerCoup(int column, int numeroJoueur) throws invalidCellException {
         if ((column < 0) || (column >=terrain[0].length) || terrain[0][column] != 0){throw new invalidCellException();};
-
         for (int i = terrain.length-1; i >= 0 ; i--) {
-            if (terrain[i][column] == 0) {terrain[i][column] = numeroJoueur;break;}
+            if (terrain[i][column] == 0) {terrain[i][column] = numeroJoueur;return;}
         }
-
-        return true;
+        throw new invalidCellException();
     }
 
-    /**
+    /** check if a player have won the game
      * @return the player who won | 0 otherwise
      */
     public int checkWin(){
@@ -157,6 +155,7 @@ public class Plateau {
     }
 
     /**
+     * check if the board have no more playable space available
      * @return true if the board is full
      */
     public boolean boardIsFull(){
