@@ -1,7 +1,9 @@
 package Modele.Exception;
 
 public class invalidColumException extends Exception {
-    //Mon precieux
+    /**
+     * Generate an Exception if the column entered is invalid
+     */
     public invalidColumException() {
         super();
     }
