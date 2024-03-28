@@ -37,6 +37,7 @@ public class Plateau {
      * @param column column number as column entered by the player - 1
      *      *               if the player wrote 1 the number given should be 0
      *      * @param numeroJoueur number of the player
+     * @param numeroJoueur the number of the player who is making a move
      * @throws invalidCellException if the column selected is less than 0 or greater than the number of columns
      */
     public void jouerCoup(int column, int numeroJoueur) throws invalidCellException {
