@@ -1,5 +1,6 @@
 package Controleur;
 
+import Modele.Exception.invalidCellException;
 import Modele.Joueur;
 import Modele.Plateau;
 import Vue.Ihm;
@@ -7,6 +8,7 @@ import Vue.Ihm;
 public class ControleurPuissanceQuatre {
     private Joueur[] joueurs;
     private final Ihm ihm;
+    private Plateau jeu;
 
     /**
      * Initialize the game
@@ -54,35 +56,40 @@ public class ControleurPuissanceQuatre {
         int playerTurn = 0;
 
 
-        Plateau jeu = new Plateau();
+        jeu = new Plateau();
+        boolean valid = true;
 
         int coup;
-        boolean erone = false;
         // Game loop
         while (true) {
-            try {
                 // Ask the current player for their move
                 // Verify and play the move if it's valid
 
-                coup = ihm.demanderCoup(jeu.toString(), joueurs[playerTurn].getNom(), erone);
-                erone = false;
-                if (jeu.jouerCoup(coup - 1, playerTurn + 1)) {
-                    if (jeu.checkWin() != -1) {
-                        joueurs[playerTurn].increaseScore();
-                        ihm.victory(joueurs[playerTurn].getNom(), jeu.toString());
-                        break;
-                    }
-                    if (jeu.boardIsFull()) {
-                        ihm.noWinBoardFull(jeu.toString());
-                        break;
-                    }
-                    // If the move was successful, update the next player
-                    playerTurn = (playerTurn + 1) % 2;
-                }
-            } catch (Exception e) {
-                erone = true;
-                ihm.invalidData();
+            if (valid) {
+                ihm.afficherPlateau(jeu.toString());
             }
+            valid = true;
+            coup = ihm.demanderCoup(joueurs[playerTurn].getNom());
+
+                try {
+                    if (jeu.jouerCoup(coup - 1, playerTurn + 1)) {
+                        if (jeu.checkWin() != -1) {
+                            joueurs[playerTurn].increaseScore();
+                            ihm.victory(joueurs[playerTurn].getNom(), jeu.toString());
+                            break;
+                        }
+                        if (jeu.boardIsFull()) {
+                            ihm.noWinBoardFull(jeu.toString());
+                            break;
+                        }
+                        // If the move was successful, update the next player
+                        playerTurn = (playerTurn + 1) % 2;
+                    }
+                }
+                catch (invalidCellException e){
+                    ihm.invalidData();
+                    valid = false;
+                }
         }
         // Announce the winner and update their score
     }

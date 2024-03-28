@@ -11,25 +11,27 @@ public class Ihm {
 
     /**
      * Ask the player to play on a column
-     * @param plateau Board of the game
      * @param playerName Player asked
-     * @param erreur If call with an error
      * @return Column to play on
      */
-    public int demanderCoup(String plateau, String playerName, boolean erreur) throws invalidColumException {
+    public int demanderCoup(String playerName) {
         Scanner scanner = new Scanner(System.in);
-        if (erreur){
-            System.out.println(playerName + " c'est encore à vous ! Indiquez le numéro (entre 1 et 7) de la colone visée. \nVotre coup : ");
-        } else {
-            System.out.println(plateau + playerName + " à vous de jouer ! Indiquez le numéro de la colone visée. \nVotre coup : ");
+        System.out.println(playerName + " à vous de jouer ! Indiquez le numéro de la colone visée. \nVotre coup : ");
+
+        int coup = -1;
+        while (scanner.hasNext()) {
+            if ( scanner.hasNextInt()) {
+                coup = scanner.nextInt();
+                break;
+            } else {
+                scanner = new Scanner(System.in);
+            }
         }
-        String coup = scanner.nextLine();
-        Pattern pattern = Pattern.compile("[1-7]", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(coup);
-        if (matcher.find()) {
-            return Integer.parseInt(coup);
-        }
-        throw new invalidColumException();
+        return coup;
+    }
+
+    public void afficherPlateau(String jeu){
+        System.out.println(jeu);
     }
 
     /**

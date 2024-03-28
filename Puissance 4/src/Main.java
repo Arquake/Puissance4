@@ -10,6 +10,5 @@ public class Main {
         ControleurPuissanceQuatre controleurPuissanceQuatre = new ControleurPuissanceQuatre(ihm);
         controleurPuissanceQuatre.jouer();
 
-
     }
 }
