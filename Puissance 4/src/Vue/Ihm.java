@@ -1,12 +1,6 @@
 package Vue;
 
-import Modele.Exception.invalidColumException;
-import Modele.Plateau;
-
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Ihm {
 
     /**

@@ -1,6 +1,6 @@
 package Modele;
 
-import Modele.Exception.invalidCellException;
+import Modele.Exception.invalidColumnException;
 
 public class Plateau {
 
@@ -38,14 +38,14 @@ public class Plateau {
      *      *               if the player wrote 1 the number given should be 0
      *      * @param numeroJoueur number of the player
      * @param numeroJoueur the number of the player who is making a move
-     * @throws invalidCellException if the column selected is less than 0 or greater than the number of columns
+     * @throws invalidColumnException if the column selected is less than 0 or greater than the number of columns
      */
-    public void jouerCoup(int column, int numeroJoueur) throws invalidCellException {
-        if ((column < 0) || (column >=terrain[0].length) || terrain[0][column] != 0){throw new invalidCellException();};
+    public void jouerCoup(int column, int numeroJoueur) throws invalidColumnException {
+        if ((column < 0) || (column >=terrain[0].length) || terrain[0][column] != 0){throw new invalidColumnException();};
         for (int i = terrain.length-1; i >= 0 ; i--) {
             if (terrain[i][column] == 0) {terrain[i][column] = numeroJoueur;return;}
         }
-        throw new invalidCellException();
+        throw new invalidColumnException();
     }
 
     /** check if a player have won the game

@@ -1,6 +1,5 @@
 package Controleur;
 
-import Modele.Exception.invalidCellException;
 import Modele.Joueur;
 import Modele.Plateau;
 import Vue.Ihm;

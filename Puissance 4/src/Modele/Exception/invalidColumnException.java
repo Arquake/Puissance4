@@ -1,7 +1,7 @@
 package Modele.Exception;
 
-public class invalidCellException extends Exception{
-    public invalidCellException() {
+public class invalidColumnException extends Exception{
+    public invalidColumnException() {
         super();
     }
 
