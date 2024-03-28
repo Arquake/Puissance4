@@ -12,7 +12,7 @@ public class Ihm {
     /**
      * Ask the player to play on a column
      * @param playerName Player asked
-     * @return Column to play on
+     * @return Column played
      */
     public int demanderCoup(String playerName) {
         Scanner scanner = new Scanner(System.in);
@@ -30,6 +30,10 @@ public class Ihm {
         return coup;
     }
 
+    /**
+     * Affiche le plateau de jeu dans la console
+     * @param jeu le string du plateau
+     */
     public void afficherPlateau(String jeu){
         System.out.println(jeu);
     }
@@ -63,8 +67,8 @@ public class Ihm {
 
     /**
      * asks the player if they want to replay
-     * @author Matteo
-     * @return the user input should be y|Y|n|N
+     * the user input should be y|Y|n|N
+     * @return if the players are replaying
      */
     public boolean replay() {
         Scanner scanner = new Scanner(System.in);
