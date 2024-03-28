@@ -67,17 +67,15 @@ public class Plateau {
     private int checkRow(){
         for (int i = terrain.length-1; i >= 0 ; i--) {
             for (int j = terrain[0].length-1; j >= 3 ; j--) {
-                if (terrain[i][j] != 0) {
-                    for (int k = 3; k >= 0 ; k--) {
-                        if (terrain[i][j-k] != terrain[i][j]) {
-                            break;
-                        }
-                        else if (k==0){
-                            return terrain[i][j]-1;
-                        }
+                for (int k = 3; k >= 0 ; k--) {
+                    if (terrain[i][j-k] != terrain[i][j]) {
+                        break;
                     }
-                    break;
+                    else if (k==0){
+                        return terrain[i][j]-1;
+                    }
                 }
+
             }
         }
         return -1;
