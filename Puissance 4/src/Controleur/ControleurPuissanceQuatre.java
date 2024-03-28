@@ -48,7 +48,7 @@ public class ControleurPuissanceQuatre {
 
     /**
      * game loops until one player wins
-     * makes the actual heap
+     * makes the actual plateau and prints it
      * initializes game with joueur 0
      */
 
